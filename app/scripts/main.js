@@ -14,30 +14,30 @@ $(function(){
 			this.generateCoordinates();
 		},
 
+		//this method generates random geocoordinates
 		generateCoordinates: function(){
 			var self = this;
 			if(self.curIndex == this.limit){
 				App.Mapper.clusterLayer();
 				return;
 			}else{
-				$.get('http://www.random.org/decimal-fractions/?num=2&dec=10&col=1&format=plain&rnd=new', function(data){
-					var floats = _.compact(data.split('\n')),
-					    x = floats[0] * 2 * Math.PI - Math.PI,
-					    y = floats[1] * 2 - 1,
-					    lng = self.rad2deg(x).toFixed(5),
-					    latrad = Math.PI/2 - Math.acos(y),
-					    lat = self.rad2deg(latrad).toFixed(5),
-					    distortion = Math.pow(self.sec(latrad), 2).toFixed(2),
-					    result = {};
-					result.Latitude = lat;
-					result.Longitude = lng;
-			        self.coords.push(result);
-			        self.curIndex++;
-			        self.generateCoordinates();
-				});
+				var floats = [Math.random().toFixed(10), Math.random().toFixed(10)],
+				    x = floats[0] * 2 * Math.PI - Math.PI,
+				    y = floats[1] * 2 - 1,
+				    lng = self.rad2deg(x).toFixed(5),
+				    latrad = Math.PI/2 - Math.acos(y),
+				    lat = self.rad2deg(latrad).toFixed(5),
+				    result = {};
+				result.Latitude = lat;
+				result.Longitude = lng;
+		        self.coords.push(result);
+		        self.curIndex++;
+		        console.log('generated ', self.curIndex, ' coordinates');
+		        self.generateCoordinates();
 			}
 		},
 
+		//these are two helper functions for generating lat/lon values
 		rad2deg: function(arg) {
 	      return (360 * arg / (2 * Math.PI));
 	    },
