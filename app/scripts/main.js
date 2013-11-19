@@ -1,5 +1,10 @@
 $(function(){
 	window.App = {};
+
+	//this takes care of getting us random geocoordinates
+	//change the limit value to see how bing maps handles large data sets
+	//when it finished gathering random coordinates it calls App.Mapper.clusterLayer();
+	//which sets the data on the map
 	App.GeoManager = {
 		init: function(){
 			this.coords = [],
@@ -42,6 +47,8 @@ $(function(){
 	    } 
 	}
 
+	//This does all the map related stuff all the cool clistering brought to you by
+	//http://www.bing.com/blogs/site_blogs/b/maps/archive/2011/03/01/bing-maps-v7-modular-design-and-client-side-clustering.aspx
 	App.Mapper = {
 		init: function(){
 			var self =this;
