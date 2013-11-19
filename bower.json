@@ -1,0 +1,9 @@
+{
+  "name": "bing-maps-stress-test",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~1.10.2",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {}
+}
